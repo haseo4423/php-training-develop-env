@@ -46,7 +46,7 @@
 1. ブラウザからアクセスできないときは
   * `vagrant-hostsupdater`が動作していない可能性があります。以下を`hosts`に追加してください。
     ```text
-    192.168.40.20	sample-local5.dev.jp
+    192.168.40.20	php5-training.dev.jp
     192.168.40.20	dummy-login.dev.jp
     ```
 
@@ -88,7 +88,7 @@ IDEで設定を行うとデバッグが可能。
 
 1. メイン画面の右上あたりにある「電話と虫」のアイコンをアクティブにする。
 
-1. ブラウザから`https://sample-local5.dev.jp/`にアクセスする。
+1. ブラウザから`https://php5-training.dev.jp/`にアクセスする。
 
 1. PhpStorm側で接続許可のダイアログが出るので`accept`をクリックする。
 
@@ -101,7 +101,7 @@ IDEで設定を行うとデバッグが可能。
 
 1. `File/Directory`の`Project files`の直下のフォルダを選択する。（※たぶん`/Users/なんとかかんとか`ってパスのはず）
 
-1. `Absolute path on server`の欄で、上記フォルダの右を選択して、`/home/www/sample-local5.dev.jp`を入力する。
+1. `Absolute path on server`の欄で、上記フォルダの右を選択して、`/home/www/php5-training.dev.jp`を入力する。
 
 1. `OK`を選択する。
 

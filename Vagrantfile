@@ -4,7 +4,7 @@
 ###########################################################
 ## 各自の環境にあわせて、設定してください
 # 仮想環境で動作させたいプログラムのパス
-SAMPLE_REPOSITORY_PATH = "/Users/username/workspace/sample"
+SAMPLE_REPOSITORY_PATH = "/Users/sog/workspace/sample"
 ###########################################################
 
 vb_memory = 2048
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "sample" do |sample|
     sample.vm.network "private_network", ip: "192.168.40.20"
-    sample.hostsupdater.aliases = ["sample-local5.dev.jp"]
+    sample.hostsupdater.aliases = ["php5-training.dev.jp"]
     sample.vm.synced_folder '.', '/vagrant', owner: "root", group: "root", mount_options: ['dmode=777','fmode=777']
 
     # 21_sample
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
       mount_options: ['dmode=777','fmode=777']
 
     sample.vm.provider "virtualbox" do |vb|
-      vb.name = "sample-local5"
+      vb.name = "php5-training"
       vb.memory = vb_memory
       vb.cpus = vb_cpus
       vb.customize ["modifyvm", :id, "--ioapic", "on"]
