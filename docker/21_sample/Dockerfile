@@ -64,6 +64,3 @@ RUN /usr/sbin/update-ca-certificates
 COPY ./cmd/create_ssl.sh /root/cmd/create_ssl.sh
 RUN chmod 744 /root/cmd/create_ssl.sh
 RUN /bin/bash -c "source /root/cmd/create_ssl.sh"
-
-COPY ./apache2/extra_mod/mod_setenvifplus.so /usr/local/apache2/modules/mod_setenvifplus.so
-RUN chmod 755 /usr/local/apache2/modules/mod_setenvifplus.so

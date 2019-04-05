@@ -20,7 +20,7 @@ services:
       - "443:443"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./21_sample/apache2/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./21_sample/config/apache2/sites-enabled:/etc/apache2/sites-enabled
       - ./21_sample/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./21_sample/log/apache2:/var/log/apache2
       - ./21_sample/log/php:/var/log/php
