@@ -5,7 +5,7 @@
 ## 各自の環境にあわせて、設定してください
 # 仮想環境で動作させたいプログラムのパス
 # PHP_TRAINING_REPOSITORY_PATH = "Users/username/workspace/sample"
-PHP_TRAINING_REPOSITORY_PATH = "../../workspace/sample"
+PHP_TRAINING_REPOSITORY_PATH = "../../workspace/php-training-question"
 ###########################################################
 
 vb_memory = 2048
