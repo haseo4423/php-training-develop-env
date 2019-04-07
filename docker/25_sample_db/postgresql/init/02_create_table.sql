@@ -35,7 +35,7 @@ CREATE TABLE pokemon_status (
     status_spdefense INT,
     status_speed INT,
     status_sum INT
-)
+);
 
 ALTER TABLE public.pokemon_status OWNER TO php_training_user;
 
