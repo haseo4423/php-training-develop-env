@@ -1,5 +1,5 @@
-# Vagrant-Docker-PHP5
-ローカル開発環境（PHP 5.6版）
+# php-training-develop-env
+PHPトレーニング向けローカル開発環境（PHP 5.6版）
 
 ## セットアップ
 1. 依存関係のあるソフトウェアをインストール
@@ -10,15 +10,15 @@
 
 1. このプロジェクトをClone
     ```console
-    $ git clone https://github.com/haseo4423/vagrant-docker-php5
-    $ cd vagrant-docker-php5
+    $ git clone https://github.com/haseo4423/php-training-develop-env
+    $ cd php-training-develop-env
     ```
 
 1. 設定ファイルの更新
     ```console
     $ vim vagrantfile
     ```
-    ※`SAMPLE_REPOSITORY_PATH`を自身の環境にあわせて変更
+    ※`PHP_TRAINING_REPOSITORY_PATH`を自身の環境にあわせて変更
 
 1. 起動
     ```console
@@ -39,7 +39,7 @@
     [root@localhost ~]# cd /vagrant/docker/
     [root@localhost docker]# docker-compose exec ${コンテナ名} /bin/bash
     ```
-    `${コンテナ名}`には、`proxy`、`dummy-login`、`sample`、`sample_db`のいずれかを設定
+    `${コンテナ名}`には、`proxy`、`sample`、`sample_db`のいずれかを設定
 
 ## トラブルシューティング
 
@@ -47,7 +47,6 @@
   * `vagrant-hostsupdater`が動作していない可能性があります。以下を`hosts`に追加してください。
     ```text
     192.168.40.20	php5-training.dev.jp
-    192.168.40.20	dummy-login.dev.jp
     ```
 
 ## SSLエラーの回避方法

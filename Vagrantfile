@@ -4,8 +4,8 @@
 ###########################################################
 ## 各自の環境にあわせて、設定してください
 # 仮想環境で動作させたいプログラムのパス
-# SAMPLE_REPOSITORY_PATH = "Users/username/workspace/sample"
-SAMPLE_REPOSITORY_PATH = "../../workspace/sample"
+# PHP_TRAINING_REPOSITORY_PATH = "Users/username/workspace/sample"
+PHP_TRAINING_REPOSITORY_PATH = "../../workspace/sample"
 ###########################################################
 
 vb_memory = 2048
@@ -27,8 +27,8 @@ if not plugins_to_install.empty?
 end
 
 # 設定情報確認
-if not Dir.exist?(SAMPLE_REPOSITORY_PATH)
-  abort "SAMPLE_REPOSITORY_PATH が存在しません。設定を確認してください。"
+if not Dir.exist?(PHP_TRAINING_REPOSITORY_PATH)
+  abort "PHP_TRAINING_REPOSITORY_PATH が存在しません。設定を確認してください。"
 end
 
 Vagrant.configure("2") do |config|
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
     sample.vm.synced_folder '.', '/vagrant', owner: "root", group: "root", mount_options: ['dmode=777','fmode=777']
 
     # 21_sample
-    sample.vm.synced_folder SAMPLE_REPOSITORY_PATH, "/home/www/sample.dev.jp",
+    sample.vm.synced_folder PHP_TRAINING_REPOSITORY_PATH, "/home/www/sample.dev.jp",
       mount_options: ['dmode=777','fmode=777']
 
     sample.vm.provider "virtualbox" do |vb|
