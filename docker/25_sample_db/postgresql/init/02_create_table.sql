@@ -1,4 +1,4 @@
--- \c sample_database;
+\c php_training_database;
 
 -- --
 -- -- PostgreSQL database dump
@@ -6,27 +6,239 @@
 -- -- dumpファイルの内容とかテーブル作成とかする
 -- --
 
--- SET statement_timeout = 0;
--- SET client_encoding = 'UTF8';
--- SET standard_conforming_strings = off;
--- SET check_function_bodies = false;
--- SET client_min_messages = warning;
--- SET escape_string_warning = off;
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
 
--- SET search_path = public, pg_catalog;
+SET search_path = public, pg_catalog;
 
--- SET default_tablespace = '';
+SET default_tablespace = '';
 
--- SET default_with_oids = false;
+SET default_with_oids = false;
 
--- CREATE TABLE sample_table (
---     num bigint NOT NULL,
---     create_time timestamp without time zone DEFAULT now(),
---     update_time timestamp without time zone DEFAULT now()
--- );
+CREATE TABLE pokemon_status (
+    id SERIAL PRIMARY KEY,
+    dict_num VARCHAR(6),
+    name TEXT,
+    type1 VARCHAR(6),
+    type2 VARCHAR(6),
+    chara1 TEXT,
+    chara2 TEXT,
+    chara_sp TEXT,
+    status_hp INT,
+    status_attack INT,
+    status_defense INT,
+    status_spattack INT,
+    status_spdefense INT,
+    status_speed INT,
+    status_sum INT
+)
 
+ALTER TABLE public.pokemon_status OWNER TO php_training_user;
 
--- ALTER TABLE public.sample_table OWNER TO postgre_user;
+COMMENT ON COLUMN pokemon_status.id IS 'テーブルのユニークID';
+COMMENT ON COLUMN pokemon_status.dict_num IS '図鑑番号(メガシンカ等はCSVの形式でインサートする)';
+COMMENT ON COLUMN pokemon_status.name IS 'ポケモン名';
+COMMENT ON COLUMN pokemon_status.type1 IS 'タイプ1';
+COMMENT ON COLUMN pokemon_status.type2 IS 'タイプ2';
+COMMENT ON COLUMN pokemon_status.chara1 IS '特性1';
+COMMENT ON COLUMN pokemon_status.chara2 IS '特性2';
+COMMENT ON COLUMN pokemon_status.chara_sp IS '夢特性';
+COMMENT ON COLUMN pokemon_status.status_hp IS 'HP';
+COMMENT ON COLUMN pokemon_status.status_attack IS 'こうげき';
+COMMENT ON COLUMN pokemon_status.status_defense IS 'ぼうぎょ';
+COMMENT ON COLUMN pokemon_status.status_spattack IS 'とくこう';
+COMMENT ON COLUMN pokemon_status.status_spdefense IS 'とくぼう';
+COMMENT ON COLUMN pokemon_status.status_speed IS 'すばやさ';
+COMMENT ON COLUMN pokemon_status.status_sum IS '合計';
+
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('1','フシギダネ','くさ','どく','しんりょく','','ようりょくそ','45','49','49','65','65','45','318');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('2','フシギソウ','くさ','どく','しんりょく','','ようりょくそ','60','62','63','80','80','60','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('3','フシギバナ','くさ','どく','しんりょく','','ようりょくそ','80','82','83','100','100','80','525');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('003-1','メガフシギバナ','くさ','どく','あついしぼう','','','80','100','123','122','120','80','625');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('4','ヒトカゲ','ほのお','','もうか','','サンパワー','39','52','43','60','50','65','309');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('5','リザード','ほのお','','もうか','','サンパワー','58','64','58','80','65','80','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('6','リザードン','ほのお','ひこう','もうか','','サンパワー','78','84','78','109','85','100','534');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('006-1','メガリザードンX','ほのお','ドラゴン','かたいツメ','','','78','130','111','130','85','100','634');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('006-2','メガリザードンY','ほのお','ひこう','ひでり','','','78','104','78','159','115','100','634');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('7','ゼニガメ','みず','','げきりゅう','','あめうけざら','44','48','65','50','64','43','314');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('8','カメール','みず','','げきりゅう','','あめうけざら','59','63','80','65','80','58','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('9','カメックス','みず','','げきりゅう','','あめうけざら','79','83','100','85','105','78','530');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('009-1','メガカメックス','みず','','メガランチャー','','','79','103','120','135','115','78','630');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('10','キャタピー','むし','','りんぷん','','にげあし','45','30','35','20','20','45','195');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('11','トランセル','むし','','だっぴ','','','50','20','55','25','25','30','205');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('12','バタフリー','むし','ひこう','ふくがん','','いろめがね','60','45','50','90','80','70','395');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('13','ビードル','むし','どく','りんぷん','','にげあし','40','35','30','20','20','50','195');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('14','コクーン','むし','どく','だっぴ','','','45','25','50','25','25','35','205');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('15','スピアー','むし','どく','むしのしらせ','','スナイパー','65','90','40','45','80','75','395');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('015-1','メガスピアー','むし','どく','てきおうりょく','','','65','150','40','15','80','145','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('16','ポッポ','ノーマル','ひこう','するどいめ',' ちどりあし','はとむね','40','45','40','35','35','56','251');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('17','ピジョン','ノーマル','ひこう','するどいめ',' ちどりあし','はとむね','63','60','55','50','50','71','349');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('18','ピジョット','ノーマル','ひこう','するどいめ',' ちどりあし','はとむね','83','80','75','70','70','101','479');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('018-1','メガピジョット','ノーマル','ひこう','ノーガード','','','83','80','80','135','80','121','579');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('19','コラッタ','ノーマル','','にげあし',' こんじょう','はりきり','30','56','35','25','35','72','253');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('019-1','コラッタ:A','あく','ノーマル','くいしんぼう',' はりきり','あついしぼう','30','56','35','25','35','72','253');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('20','ラッタ','ノーマル','','にげあし',' こんじょう','はりきり','55','81','60','50','70','97','413');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('020-1','ラッタ:A','あく','ノーマル','くいしんぼう',' はりきり','あついしぼう','75','71','70','40','80','77','413');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('21','オニスズメ','ノーマル','ひこう','するどいめ','','スナイパー','40','60','30','31','31','70','262');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('22','オニドリル','ノーマル','ひこう','するどいめ','','スナイパー','65','90','65','61','61','100','442');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('23','アーボ','どく','','いかく',' だっぴ','きんちょうかん','35','60','44','40','54','55','288');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('24','アーボック','どく','','いかく',' だっぴ','きんちょうかん','60','95','69','65','79','80','448');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('25','ピカチュウ','でんき','','せいでんき','','ひらいしん','35','55','40','50','50','90','320');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('26','ライチュウ','でんき','','せいでんき','','ひらいしん','60','90','55','90','80','110','485');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('026-1','ライチュウ:A','でんき','エスパー','サーフテール','','','60','85','50','95','85','110','485');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('27','サンド','じめん','','すながくれ','','すなかき','50','75','85','20','30','40','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('027-1','サンド:A','こおり','はがね','ゆきがくれ','','ゆきかき','50','75','90','10','35','40','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('28','サンドパン','じめん','','すながくれ','','すなかき','75','100','110','45','55','65','450');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('028-1','サンドパン:A','こおり','はがね','ゆきがくれ','','ゆきかき','75','100','120','25','65','65','450');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('29','ニドラン♀','どく','','どくのトゲ',' とうそうしん','はりきり','55','47','52','40','40','41','275');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('30','ニドリーナ','どく','','どくのトゲ',' とうそうしん','はりきり','70','62','67','55','55','56','365');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('31','ニドクイン','どく','じめん','どくのトゲ',' とうそうしん','ちからずく','90','92','87','75','85','76','505');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('32','ニドラン♂','どく','','どくのトゲ',' とうそうしん','はりきり','46','57','40','40','40','50','273');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('33','ニドリーノ','どく','','どくのトゲ',' とうそうしん','はりきり','61','72','57','55','55','65','365');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('34','ニドキング','どく','じめん','どくのトゲ',' とうそうしん','ちからずく','81','102','77','85','75','85','505');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('35','ピッピ','フェアリー','','メロメロボディ',' マジックガード','フレンドガード','70','45','48','60','65','35','323');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('36','ピクシー','フェアリー','','メロメロボディ',' マジックガード','てんねん','95','70','73','95','90','60','483');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('37','ロコン','ほのお','','もらいび','','ひでり','38','41','40','50','65','65','299');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('037-1','ロコン:A','こおり','','ゆきがくれ','','ゆきふらし','38','41','40','50','65','65','299');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('38','キュウコン','ほのお','','もらいび','','ひでり','73','76','75','81','100','100','505');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('038-1','キュウコン:A','こおり','フェアリー','ゆきがくれ','','ゆきふらし','73','67','75','81','100','109','505');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('39','プリン','ノーマル','フェアリー','メロメロボディ',' かちき','フレンドガード','115','45','20','45','25','20','270');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('40','プクリン','ノーマル','フェアリー','メロメロボディ',' かちき','おみとおし','140','70','45','85','50','45','435');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('41','ズバット','どく','ひこう','せいしんりょく','','すりぬけ','40','45','35','30','40','55','245');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('42','ゴルバット','どく','ひこう','せいしんりょく','','すりぬけ','75','80','70','65','75','90','455');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('43','ナゾノクサ','くさ','どく','ようりょくそ','','にげあし','45','50','55','75','65','30','320');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('44','クサイハナ','くさ','どく','ようりょくそ','','あくしゅう','60','65','70','85','75','40','395');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('45','ラフレシア','くさ','どく','ようりょくそ','','ほうし','75','80','85','110','90','50','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('46','パラス','むし','くさ','ほうし',' かんそうはだ','しめりけ','35','70','55','45','55','25','285');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('47','パラセクト','むし','くさ','ほうし',' かんそうはだ','しめりけ','60','95','80','60','80','30','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('48','コンパン','むし','どく','ふくがん',' いろめがね','にげあし','60','55','50','40','55','45','305');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('49','モルフォン','むし','どく','りんぷん',' いろめがね','ミラクルスキン','70','65','60','90','75','90','450');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('50','ディグダ','じめん','','すながくれ',' ありじごく','すなのちから','10','55','25','35','45','95','265');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('050-1','ディグダ:A','じめん','はがね','すながくれ',' カーリーヘアー','すなのちから','10','55','30','35','45','90','265');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('51','ダグトリオ','じめん','','すながくれ',' ありじごく','すなのちから','35','100','50','50','70','120','425');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('051-1','ダグドリオ:A','じめん','はがね','すながくれ',' カーリーヘアー','すなのちから','35','100','60','50','70','110','425');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('52','ニャース','ノーマル','','ものひろい',' テクニシャン','きんちょうかん','40','45','35','40','40','90','290');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('052-1','ニャース:A','あく','','ものひろい',' テクニシャン','びびり','40','35','35','50','40','90','290');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('53','ペルシアン','ノーマル','','じゅうなん',' テクニシャン','きんちょうかん','65','70','60','65','65','115','440');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('053-1','ペルシアン:A','あく','','ファーコート',' テクニシャン','びびり','65','60','60','75','65','115','440');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('54','コダック','みず','','しめりけ',' ノーてんき','すいすい','50','52','48','65','50','55','320');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('55','ゴルダック','みず','','しめりけ',' ノーてんき','すいすい','80','82','78','95','80','85','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('56','マンキー','かくとう','','やるき',' いかりのつぼ','まけんき','40','80','35','35','45','70','305');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('57','オコリザル','かくとう','','やるき',' いかりのつぼ','まけんき','65','105','60','60','70','95','455');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('58','ガーディ','ほのお','','いかく',' もらいび','せいぎのこころ','55','70','45','70','50','60','350');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('59','ウインディ','ほのお','','いかく',' もらいび','せいぎのこころ','90','110','80','100','80','95','555');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('60','ニョロモ','みず','','ちょすい',' しめりけ','すいすい','40','50','40','40','40','90','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('61','ニョロゾ','みず','','ちょすい',' しめりけ','すいすい','65','65','65','50','50','90','385');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('62','ニョロボン','みず','かくとう','ちょすい',' しめりけ','すいすい','90','95','95','70','90','70','510');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('63','ケーシィ','エスパー','','シンクロ',' せいしんりょく','マジックガード','25','20','15','105','55','90','310');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('64','ユンゲラー','エスパー','','シンクロ',' せいしんりょく','マジックガード','40','35','30','120','70','105','400');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('65','フーディン','エスパー','','シンクロ',' せいしんりょく','マジックガード','55','50','45','135','95','120','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('065-1','メガフーディン','エスパー','','トレース','','','55','50','65','175','105','150','600');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('66','ワンリキー','かくとう','','こんじょう',' ノーガード','ふくつのこころ','70','80','50','35','35','35','305');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('67','ゴーリキー','かくとう','','こんじょう',' ノーガード','ふくつのこころ','80','100','70','50','60','45','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('68','カイリキー','かくとう','','こんじょう',' ノーガード','ふくつのこころ','90','130','80','65','85','55','505');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('69','マダツボミ','くさ','どく','ようりょくそ','','くいしんぼう','50','75','35','70','30','40','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('70','ウツドン','くさ','どく','ようりょくそ','','くいしんぼう','65','90','50','85','45','55','390');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('71','ウツボット','くさ','どく','ようりょくそ','','くいしんぼう','80','105','65','100','70','70','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('72','メノクラゲ','みず','どく','クリアボディ',' ヘドロえき','あめうけざら','40','40','35','50','100','70','335');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('73','ドククラゲ','みず','どく','クリアボディ',' ヘドロえき','あめうけざら','80','70','65','80','120','100','515');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('74','イシツブテ','いわ','じめん','いしあたま',' がんじょう','すながくれ','40','80','100','30','30','20','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('074-1','イシツブテ:A','いわ','でんき','じりょく',' がんじょう','エレキスキン','40','80','100','30','30','20','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('75','ゴローン','いわ','じめん','いしあたま',' がんじょう','すながくれ','55','95','115','45','45','35','390');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('075-1','ゴローン:A','いわ','でんき','じりょく',' がんじょう','エレキスキン','55','95','115','45','45','35','390');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('76','ゴローニャ','いわ','じめん','いしあたま',' がんじょう','すながくれ','80','120','130','55','65','45','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('076-1','ゴローニャ:A','いわ','でんき','じりょく',' がんじょう','エレキスキン','80','120','130','55','65','45','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('77','ポニータ','ほのお','','にげあし',' もらいび','ほのおのからだ','50','85','55','65','65','90','410');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('78','ギャロップ','ほのお','','にげあし',' もらいび','ほのおのからだ','65','100','70','80','80','105','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('79','ヤドン','みず','エスパー','どんかん',' マイペース','さいせいりょく','90','65','65','40','40','15','315');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('80','ヤドラン','みず','エスパー','どんかん',' マイペース','さいせいりょく','95','75','110','100','80','30','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('080-1','メガヤドラン','みず','エスパー','シェルアーマー','','','95','75','180','130','80','30','590');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('81','コイル','でんき','はがね','じりょく',' がんじょう','アナライズ','25','35','70','95','55','45','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('82','レアコイル','でんき','はがね','じりょく',' がんじょう','アナライズ','50','60','95','120','70','70','465');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('83','カモネギ','ノーマル','ひこう','するどいめ',' せいしんりょく','まけんき','52','90','55','58','62','60','377');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('84','ドードー','ノーマル','ひこう','にげあし',' はやおき','ちどりあし','35','85','45','35','35','75','310');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('85','ドードリオ','ノーマル','ひこう','にげあし',' はやおき','ちどりあし','60','110','70','60','60','110','470');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('86','パウワウ','みず','','あついしぼう',' うるおいボディ','アイスボディ','65','45','55','45','70','45','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('87','ジュゴン','みず','こおり','あついしぼう',' うるおいボディ','アイスボディ','90','70','80','70','95','70','475');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('88','ベトベター','どく','','あくしゅう',' ねんちゃく','どくしゅ','80','80','50','40','50','25','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('088-1','ベトベター:A','どく','あく','どくしゅ',' くいしんぼう','かがくのちから','80','80','50','40','50','25','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('89','ベトベトン','どく','','あくしゅう',' ねんちゃく','どくしゅ','105','105','75','65','100','50','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('089-1','ベトベトン:A','どく','あく','どくしゅ',' くいしんぼう','かがくのちから','105','105','75','65','100','50','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('90','シェルダー','みず','','シェルアーマー',' スキルリンク','ぼうじん','30','65','100','45','25','40','305');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('91','パルシェン','みず','こおり','シェルアーマー',' スキルリンク','ぼうじん','50','95','180','85','45','70','525');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('92','ゴース','ゴースト','どく','ふゆう','','','30','35','30','100','35','80','310');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('93','ゴースト','ゴースト','どく','ふゆう','','','45','50','45','115','55','95','405');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('94','ゲンガー','ゴースト','どく','のろわれボディ','','','60','65','60','130','75','110','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('094-1','メガゲンガー','ゴースト','どく','かげふみ','','','60','65','80','170','95','130','600');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('95','イワーク','いわ','じめん','いしあたま',' がんじょう','くだけるよろい','35','45','160','30','45','70','385');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('96','スリープ','エスパー','','ふみん',' よちむ','せいしんりょく','60','48','45','43','90','42','328');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('97','スリーパー　','エスパー','','ふみん',' よちむ','せいしんりょく','85','73','70','73','115','67','483');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('98','クラブ','みず','','かいりきバサミ',' シェルアーマー','ちからずく','30','105','90','25','25','50','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('99','キングラー','みず','','かいりきバサミ',' シェルアーマー','ちからずく','55','130','115','50','50','75','475');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('100','ビリリダマ','でんき','','ぼうおん',' せいでんき','ゆうばく','40','30','50','55','55','100','330');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('101','マルマイン','でんき','','ぼうおん',' せいでんき','ゆうばく','60','50','70','80','80','150','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('102','タマタマ','くさ','エスパー','ようりょくそ','','しゅうかく','60','40','80','60','45','40','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('103','ナッシー','くさ','エスパー','ようりょくそ','','しゅうかく','95','95','85','125','75','55','530');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('103-1','ナッシー:A','くさ','ドラゴン','おみとおし','','しゅうかく','95','105','85','125','75','45','530');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('104','カラカラ','じめん','','いしあたま',' ひらいしん','カブトアーマー','50','50','95','40','50','35','320');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('105','ガラガラ','じめん','','いしあたま',' ひらいしん','カブトアーマー','60','80','110','50','80','45','425');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('105-1','ガラガラ:A','ほのお','ゴースト','のろわれボディ',' ひらいしん','いしあたま','60','80','110','50','80','45','425');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('106','サワムラー','かくとう','','じゅうなん',' すてみ','かるわざ','50','120','53','35','110','87','455');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('107','エビワラー','かくとう','','するどいめ',' てつのこぶし','せいしんりょく','50','105','79','35','110','76','455');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('108','ベロリンガ','ノーマル','','マイペース',' どんかん','ノーてんき','90','55','75','60','75','30','385');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('109','ドガース','どく','','ふゆう','','','40','65','95','60','45','35','340');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('110','マタドガス','どく','','ふゆう','','','65','90','120','85','70','60','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('111','サイホーン','じめん','いわ','ひらいしん',' いしあたま','すてみ','80','85','95','30','30','25','345');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('112','サイドン','じめん','いわ','ひらいしん',' いしあたま','すてみ','105','130','120','45','45','40','485');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('113','ラッキー','ノーマル','','しぜんかいふく',' てんのめぐみ','いやしのこころ','250','5','5','35','105','50','450');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('114','モンジャラ','くさ','','ようりょくそ',' リーフガード','さいせいりょく','65','55','115','100','40','60','435');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('115','ガルーラ','ノーマル','','はやおき',' きもったま','せいしんりょく','105','95','80','40','80','90','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('115-1','メガガルーラ','ノーマル','','おやこあい','','','105','125','100','60','100','100','590');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('116','タッツー','みず','','すいすい',' スナイパー','しめりけ','30','40','70','70','25','60','295');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('117','シードラ','みず','','どくのトゲ',' スナイパー','しめりけ','55','65','95','95','45','85','440');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('118','トサキント','みず','','すいすい',' みずのベール','ひらいしん','45','67','60','35','50','63','320');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('119','アズマオウ','みず','','すいすい',' みずのベール','ひらいしん','80','92','65','65','80','68','450');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('120','ヒトデマン','みず','','はっこう',' しぜんかいふく','アナライズ','30','45','55','70','55','85','340');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('121','スターミー','みず','エスパー','はっこう',' しぜんかいふく','アナライズ','60','75','85','100','85','115','520');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('122','バリヤード','エスパー','フェアリー','ぼうおん',' フィルター','テクニシャン','40','45','65','100','120','90','460');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('123','ストライク','むし','ひこう','むしのしらせ',' テクニシャン','ふくつのこころ','70','110','80','55','80','105','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('124','ルージュラ','こおり','エスパー','どんかん',' よちむ','かんそうはだ','65','50','35','115','95','95','455');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('125','エレブー','でんき','','せいでんき','','やるき','65','83','57','95','85','105','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('126','ブーバー','ほのお','','ほのおのからだ','','やるき','65','95','57','100','85','93','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('127','カイロス','むし','','かいりきバサミ',' かたやぶり','じしんかじょう','65','125','100','55','70','85','500');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('127-1','メガカイロス','むし','ひこう','スカイスキン','','','65','155','120','65','90','105','600');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('128','ケンタロス','ノーマル','','いかく',' いかりのつぼ','ちからずく','75','100','95','40','70','110','490');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('129','コイキング','みず','','すいすい','','びびり','20','10','55','15','20','80','200');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('130','ギャラドス','みず','ひこう','いかく','','じしんかじょう','95','125','79','60','100','81','540');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('130-1','メガギャラドス','みず','あく','かたやぶり','','','95','155','109','70','130','81','640');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('131','ラプラス','みず','こおり','ちょすい',' シェルアーマー','うるおいボディ','130','85','80','85','95','60','535');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('132','メタモン','ノーマル','','じゅうなん','','かわりもの','48','48','48','48','48','48','288');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('133','イーブイ','ノーマル','','にげあし',' てきおうりょく','きけんよち','55','55','50','45','65','55','325');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('134','シャワーズ','みず','','ちょすい','','うるおいボディ','130','65','60','110','95','65','525');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('135','サンダース','でんき','','ちくでん','','はやあし','65','65','60','110','95','130','525');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('136','ブースター','ほのお','','もらいび','','こんじょう','65','130','60','95','110','65','525');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('137','ポリゴン','ノーマル','','トレース',' ダウンロード','アナライズ','65','60','70','85','75','40','395');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('138','オムナイト','いわ','みず','すいすい',' シェルアーマー','くだけるよろい','35','40','100','90','55','35','355');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('139','オムスター','いわ','みず','すいすい',' シェルアーマー','くだけるよろい','70','60','125','115','70','55','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('140','カブト','いわ','みず','すいすい',' カブトアーマー','くだけるよろい','30','80','90','55','45','55','355');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('141','カブトプス','いわ','みず','すいすい',' カブトアーマー','くだけるよろい','60','115','105','65','70','80','495');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('142','プテラ','いわ','ひこう','いしあたま',' プレッシャー','きんちょうかん','80','105','65','60','75','130','515');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('142-1','メガプテラ','いわ','ひこう','かたいツメ','','','80','135','85','70','95','150','615');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('143','カビゴン','ノーマル','','めんえき',' あついしぼう','くいしんぼう','160','110','65','65','110','30','540');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('144','フリーザー','こおり','ひこう','プレッシャー','','ゆきがくれ','90','85','100','95','125','85','580');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('145','サンダー','でんき','ひこう','プレッシャー','','せいでんき','90','90','85','125','90','100','580');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('146','ファイヤー','ほのお','ひこう','プレッシャー','','ほのおのからだ','90','100','90','125','85','90','580');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('147','ミニリュウ','ドラゴン','','だっぴ','','ふしぎなうろこ','41','64','45','50','50','50','300');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('148','ハクリュー','ドラゴン','','だっぴ','','ふしぎなうろこ','61','84','65','70','70','70','420');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('149','カイリュー','ドラゴン','ひこう','せいしんりょく','','マルチスケイル','91','134','95','100','100','80','600');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('150','ミュウツー','エスパー','','プレッシャー','','きんちょうかん','106','110','90','154','90','130','680');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('150-1','メガミュウツーX','エスパー','かくとう','ふくつのこころ','','','106','190','100','154','100','130','780');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('150-2','メガミュウツーY','エスパー','','ふみん','','','106','150','70','194','120','140','780');
+INSERT INTO pokemon_status (dict_num,name,type1,type2,chara1,chara2,chara_sp,status_hp,status_attack,status_defense,status_spattack,status_spdefense,status_speed,status_sum) VALUES ('151','ミュウ','エスパー','','シンクロ','','','100','100','100','100','100','100','600');
 
 -- --
 -- -- PostgreSQL database dump complete
