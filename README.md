@@ -6,7 +6,10 @@ PHPトレーニング向けローカル開発環境（PHP 5.6版）
   * VirtualBox 5.2.20 以上
   * Vagrant 2.2.0 以上
 
-1. この環境で動かしたいプロジェクトをClone
+1. PHPトレーニング課題プロジェクトをClone
+    ```console
+    $ git clone https://github.com/haseo4423/php-training-question
+    ```
 
 1. このプロジェクトをClone
     ```console
@@ -18,7 +21,7 @@ PHPトレーニング向けローカル開発環境（PHP 5.6版）
     ```console
     $ vim vagrantfile
     ```
-    ※`PHP_TRAINING_REPOSITORY_PATH`を自身の環境にあわせて変更
+    ※`PHP_TRAINING_REPOSITORY_PATH`を自身の環境にCloneしたPHPトレーニング課題プロジェクトにあわせて変更
 
 1. 起動
     ```console
@@ -26,6 +29,8 @@ PHPトレーニング向けローカル開発環境（PHP 5.6版）
     ```
     ※初回起動から実際に使えるようになるには、1時間くらいかかる。
 
+1. ブラウザでアクセスする
+    `https://php5-training.dev.jp`にアクセスしてログイン画面が表示されたらセットアップ完了です。
 
 ## 仮想サーバーへつなげる方法
 1. Mac から CentOS に接続
@@ -39,7 +44,15 @@ PHPトレーニング向けローカル開発環境（PHP 5.6版）
     [root@localhost ~]# cd /vagrant/docker/
     [root@localhost docker]# docker-compose exec ${コンテナ名} /bin/bash
     ```
-    `${コンテナ名}`には、`proxy`、`sample`、`sample_db`のいずれかを設定
+    `${コンテナ名}`には、`sample`、`sample_db`のいずれかを設定
+
+## postgreSQLにログインする方法
+1. 上記方法で、`sample_db`に接続する。
+
+1. postgreSQLログインコマンドを実行する。
+    ```console
+    $ psql -U php_training_user -d php_training_database
+    ```
 
 ## トラブルシューティング
 
@@ -93,21 +106,21 @@ IDEで設定を行うとデバッグが可能。
 
 これ以降、メイン画面の右上あたりにある「電話と虫」のアイコンで、デバックするか・しないかの切り替えが行える。
 
-### ブレークポイントで止まらない場合は
-1. PhpStormの設定から、`Languages & Frameworks` ＞ `PHP` ＞ `Servers` を表示する。
+### ツールの設定（vscode・macの場合）
+1. macのPHPをv7.x以上に更新する。
 
-1. `use path mappings`にチェックを入れる。
+1. vscodeのデバッグパネルで`構成の追加` → `PHP`を選択する。
 
-1. `File/Directory`の`Project files`の直下のフォルダを選択する。（※たぶん`/Users/なんとかかんとか`ってパスのはず）
+1. `launch.json`に以下を追記する。
+```json
+{
+  "name": "Listen for XDebug",
+  "type": "php",
+  "request": "launch",
+  "port": 9002,
+  "serverSourceRoot": "/home/www/sample.dev.jp",
+  "localSourceRoot": "${workspaceRoot}"
+}
+```
 
-1. `Absolute path on server`の欄で、上記フォルダの右を選択して、`/home/www/php5-training.dev.jp`を入力する。
-
-1. `OK`を選択する。
-
-
-## メモ
-* sample_dbのデータファイルだけ、ホスト環境(Mac)と同期できていないため、これを解消する。  
-  （公式PostgreSQLのDocker Imageの問題で、ファイルシステムの違いが原因のようだが、対応策は不明。）  
-  （ゲスト環境(CentOS)とは、データ同期できているため、`vagrant destroy`しない限り、データは保持される。）
-* sample_dbについて、初期データまで入れるようにする。
-  
+これ以降、vscode上でブレークポイントを設定し、デバッグモードにした状態でPHPを動作させると処理を止めることができます。
